@@ -1,7 +1,17 @@
 #menu{
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+#menuLinks{
+    display: flex;
+    flex-direction: column;
 }
 
 #footer{
-    
+    display: flex;
+    justify-content: end;
+    margin-right: 20vh;
 }
