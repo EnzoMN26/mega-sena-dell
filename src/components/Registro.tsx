@@ -1,9 +1,9 @@
 import styles from "../styles/Registro.module.css"
 
-const Menu: React.FC = () => {
+const Registro: React.FC = () => {
     return( 
         <></>
     )
 }
 
-export default Menu;
+export default Registro;

@@ -5,32 +5,37 @@ import Sorteio from "./components/Sorteio";
 import Loja from "./components/Loja";
 import Inventario from "./components/Inventario";
 import Aposta from "./components/Aposta";
+import Menu from "./components/Menu";
 
 const router = createBrowserRouter([
   {
-    path: "",
+    path: "/",
     element: <Home />,
     children: [
       {
-        path: "/registro",
+        path: "",
+        element: <Menu />,
+      },
+      {
+        path: "registro",
         element: <Registro />,
       },
       {
-        path: "/Sorteio",
+        path: "sorteio",
         element: <Sorteio />,
       },
       {
-        path: "/Loja",
+        path: "loja",
         element: <Loja />,
       },
       {
-        path: "/Inventario",
+        path: "inventario",
         element: <Inventario />,
       },
       {
-        path: "/Aposta",
+        path: "posta",
         element: <Aposta />,
-      },
+      }
     ],
   },
 ]);
