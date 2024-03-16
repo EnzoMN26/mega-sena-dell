@@ -1,0 +1,113 @@
+#aposta{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+.gridContainer {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 5 colunas */
+    gap: 20px; /* Espaçamento entre os itens */
+    padding: 1vh;
+    max-height: 60%;
+    grid-auto-rows: 30px; /* Altura padrão das linhas */
+    min-width: 600px; /* Largura máxima da grade */
+    row-gap: 25px;
+    margin-top: 3vh;
+}
+
+.gridItem {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center; /* Centralizar texto */
+    cursor: pointer; /* Transforma o cursor em mãozinha ao passar por cima */
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    transition: 0.3s;
+}
+
+/* Estilo quando o item é selecionado */
+.gridItem:hover {
+    background-color: lightyellow; /* Cor de fundo quando selecionado */
+}
+
+#visor{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 40%;
+}
+
+.escolhido{
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    font-family: "VT323", monospace;
+}
+
+#footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0vh 2vh 1vh 2vh;
+}
+
+.botao{
+    display: flex;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+    font-size: 23px;
+    font-family: "VT323", monospace;
+    background: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#surpresinha{
+    display: flex;
+    text-decoration: none;
+    color: red;
+    transition: 0.3s;
+    font-size: 23px;
+    font-family: "VT323", monospace;
+    background: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+#rightButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+#voltar{
+    display: flex;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+    font-size: 23px;
+    font-family: "VT323", monospace;
+    background: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}

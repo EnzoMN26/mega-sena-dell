@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <Inventario />,
       },
       {
-        path: "posta",
+        path: "aposta",
         element: <Aposta />,
       }
     ],

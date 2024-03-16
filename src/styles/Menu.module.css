@@ -23,9 +23,9 @@
     color: black;
     transition: 0.3s;
     font-size: 25px;
-    font-family: "VT323", monospace;;
+    font-family: "VT323", monospace;
 }
 
 .link:hover{
-    color: blue;
+    color: red;
 }

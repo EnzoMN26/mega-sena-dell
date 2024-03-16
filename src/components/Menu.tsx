@@ -6,6 +6,7 @@ const Menu: React.FC = () => {
         <div id={styles.menu}>
             <div id={styles.menuLinks}>
             <Link className={styles.link} to="registro">Fazer Aposta</Link>
+            <Link className={styles.link} to="lista">Lista de Apostas</Link>
             <Link className={styles.link} to="loja">Loja</Link>
             <Link className={styles.link} to="inventario">Inventário</Link>
             </div>
