@@ -8,10 +8,23 @@
 #menuLinks{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    gap: 2vh;
 }
 
 #footer{
     display: flex;
     justify-content: end;
     margin-right: 20vh;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+    font-size: 20px;
+}
+
+.link:hover{
+    color: blue;
 }
