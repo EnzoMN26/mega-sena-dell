@@ -11,3 +11,12 @@ body{
   min-width: 100%;
   background-color: #F1E8DC;
 }
+
+#logo{
+  padding-top: 5vh;
+  margin: auto;
+  width: 50%;
+  font-family: 'Nabla', sans-serif;
+  font-size: 100px;
+  color: red;
+}
