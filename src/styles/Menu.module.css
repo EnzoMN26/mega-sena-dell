@@ -15,14 +15,15 @@
 #footer{
     display: flex;
     justify-content: end;
-    margin-right: 20vh;
+    margin-right: 10vh;
 }
 
 .link{
     text-decoration: none;
     color: black;
     transition: 0.3s;
-    font-size: 20px;
+    font-size: 25px;
+    font-family: "VT323", monospace;;
 }
 
 .link:hover{
