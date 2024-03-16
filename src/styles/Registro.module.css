@@ -12,6 +12,8 @@
     border: 1px solid black;
     box-shadow: 2px 2px black;
     width: 80%;
+    font-family: "VT323", monospace;
+    font-size: 25px;
 }
 
 .inputGroup{
