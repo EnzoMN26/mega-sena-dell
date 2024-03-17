@@ -30,7 +30,6 @@ const Sorteio: React.FC = () => {
         b.forEach(element => {
             a.includes(element) ? count++ : null
         });
-        count == 5 ? console.log(a, b) : console.log();
         return count == 5 ? true : false;
     }
 
@@ -42,7 +41,7 @@ const Sorteio: React.FC = () => {
         var ganhadoresAux: Pessoa[] = [];
         var numGanhadorTemp: number[] = [];
 
-        //sorteia 4 numeros antes de entrar no while responsavel por realizar o sorteio 25 vezes
+        //sorteia 4 numeros an tes de entrar no while responsavel por realizar o sorteio 25 vezes
         while (numGanhadorTemp.length < 4) {
             const num = Math.floor(Math.random() * 50) + 1
             if (!numGanhadorTemp.includes(num)) {
@@ -79,7 +78,6 @@ const Sorteio: React.FC = () => {
             })
             setGanhadores(ganhadoresAux);
             counter++;
-            console.log(numGanhadorTemp)
         }
 
         //desliga o simbolo de carregando depois de 1 segundo
