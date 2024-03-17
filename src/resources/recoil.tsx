@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { atom, selector } from "recoil";
 
-type Aposta = {
+export type Aposta = {
     id: number;
     numeros: number[];
 }
 
-type Pessoa = {
+export type Pessoa = {
     id: number;
     nome: string;
     cpf: string;

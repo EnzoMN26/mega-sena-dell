@@ -5,13 +5,15 @@ import {usuariosState, contadorId} from "../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
 const Registro: React.FC = () => {
-    const [usuarios, setUsuarios] = useRecoilState(usuariosState);
-    const [idGlobal, setIdGlobal] = useRecoilState(contadorId);
-    const [nome, setNome] = useState("");
-    const [cpf, setCpf] = useState("");
-    const id = useRef(0);
-    const [validacao, setValidacao] = useState(false);
+    const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
+    const [idGlobal, setIdGlobal] = useRecoilState(contadorId); //id global de usuarios
+    const [nome, setNome] = useState(""); //nome do usuario se cadastrando
+    const [cpf, setCpf] = useState(""); //cpf do usuario se cadastrando
+    const id = useRef(0); //id do usuario se cadastrando
+    const [validacao, setValidacao] = useState(false); //booleano para verificar a validação dos campos de registro
 
+    //caso o cpf utilizado ja esteja mapeado a alguma pessoa, ele encontra e passa o id da pessoa ja existente para o proximo componente.
+    //caso contrário ele passa um novo id ainda não utilizado
     const setPessoa = () => {
         var pessoa = usuarios.find(e => e.cpf == cpf);
         if(pessoa != undefined){
@@ -23,6 +25,7 @@ const Registro: React.FC = () => {
         }
     }
     
+    //realiza a validação da pessoa quando os componentes estão ambos preenchidos
     useEffect(() => {
         if(nome != "" && cpf.length == 11){
             setValidacao(true);

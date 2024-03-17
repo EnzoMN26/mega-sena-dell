@@ -6,11 +6,12 @@ import { usuariosState, contadorIdAposta } from "../resources/recoil";
 
 const Aposta: React.FC = (props: any) => {
     const location = useLocation();
-    const { id, nome, cpf } = location.state;
-    const [usuarios, setUsuarios] = useRecoilState(usuariosState);
-    const [idAposta, setIdAposta] = useRecoilState(contadorIdAposta);
-    const [aposta, setAposta] = useState<number[]>([]);
+    const { id, nome, cpf } = location.state; //dados recebidos do componente de registro
+    const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
+    const [idAposta, setIdAposta] = useRecoilState(contadorIdAposta); //id global das apostas
+    const [aposta, setAposta] = useState<number[]>([]); //aposta sendo executada
 
+    //adiciona um numero na aposta atual, caso esse numero ja esteja ele é removido
     function adiciona(x : number) : void {
         if(aposta.includes(x)){
             setAposta(aposta.filter(e => e != x))
@@ -20,6 +21,7 @@ const Aposta: React.FC = (props: any) => {
         }
     }
 
+    //faz a atribuição da aposta à pessoa
     function confirmAposta(){
         if(aposta.length == 5){
             var pessoaAux = usuarios.find(e => e.id == id);
@@ -30,8 +32,22 @@ const Aposta: React.FC = (props: any) => {
                 setUsuarios([ ...usuarios, {id: id, nome: nome, cpf: cpf, aposta: [{id: idAposta, numeros: aposta}]} ]);
             }
             setIdAposta(idAposta+1);
+            setAposta([])
         }
     }
+
+    //gera os numeros aleatorios para completar a aposta
+    function surpresinha(){
+        var apostaTemp = aposta.map(e => e);
+        while(apostaTemp.length < 5){
+            const num = Math.floor(Math.random() * 50) + 1
+            if(!apostaTemp.includes(num)){
+                apostaTemp.push(num)
+            }
+        }
+        setAposta(apostaTemp);
+    }
+
     // var pessoaAux = usuarios.find(e => e.cpf == cpf);
     // if(pessoaAux != undefined){
     //     return pessoaAux;
@@ -104,7 +120,7 @@ const Aposta: React.FC = (props: any) => {
         </div>
         <div id={styles.footer}>
             <Link id={styles.voltar} to="/">Voltar</Link>
-            <button id={styles.surpresinha}>SURPRESINHA</button>
+            <button onClick={() => surpresinha()} id={styles.surpresinha}>SURPRESINHA</button>
             <div id={styles.rightButtons}>
             <button onClick={() => confirmAposta()} className={styles.botao}>Confirmar Aposta</button>
             {aposta.length == 5? 
