@@ -1,4 +1,5 @@
-import { atom } from "recoil";
+import { useState } from "react";
+import { atom, selector } from "recoil";
 
 type Aposta = {
     id: number;
@@ -6,14 +7,18 @@ type Aposta = {
 }
 
 type Pessoa = {
+    id: number;
     nome: string;
-    cpf: number;
-    aposta: Aposta;
+    cpf: string;
+    aposta: Aposta | [];
 }
 
-const usuariosState = atom<Pessoa[]>({
+export const contadorId = atom<number>({
+    key: 'id',
+    default: 0,
+})
+
+export const usuariosState = atom<Pessoa[]>({
     key: 'usuariosState',
     default: [],
 })
-
-export default usuariosState;

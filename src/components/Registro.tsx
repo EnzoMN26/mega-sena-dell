@@ -1,14 +1,36 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/Registro.module.css"
 import { useRecoilState } from "recoil";
-import usuariosState from "../resources/recoil";
-import { useState } from "react";
+import {usuariosState, contadorId} from "../resources/recoil";
+import { useEffect, useRef, useState } from "react";
 
 const Registro: React.FC = () => {
     const [usuarios, setUsuarios] = useRecoilState(usuariosState);
+    const [idGlobal, setIdGlobal] = useRecoilState(contadorId);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
-    const verifica = true;
+    const id = useRef(0);
+    const [validacao, setValidacao] = useState(false);
+
+    const setPessoa = () => {
+        var pessoa = usuarios.find(e => e.cpf == cpf);
+        if(pessoa != undefined){
+            id.current = pessoa.id;
+        }
+        else{
+            setIdGlobal(idGlobal+1);
+            id.current = idGlobal;
+        }
+    }
+    
+    useEffect(() => {
+        if(nome != "" && cpf.length == 11){
+            setValidacao(true);
+            setPessoa();
+        }else{
+            setValidacao(false);
+        }
+    }, [nome, cpf]);
 
     return (
         <div id={styles.registro}>
@@ -24,8 +46,8 @@ const Registro: React.FC = () => {
             </div>
             <div id={styles.footer}>
                 <Link className={styles.botao} to="/" >Voltar</Link>
-                {verifica? 
-                <Link className={styles.botao} to="/aposta">Confirmar</Link> :
+                {validacao? 
+                <Link className={styles.botao} to='/aposta' state={{id: id.current, nome: nome, cpf: cpf}}>Confirmar</Link> :
                 <Link className={styles.botao} to="/registro">Confirmar</Link>}
             </div>
         </div>

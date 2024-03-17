@@ -1,7 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/Aposta.module.css"
+import { useEffect, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
+import { usuariosState } from "../resources/recoil";
 
-const Aposta: React.FC = () => {
+const Aposta: React.FC = (props: any) => {
+    const location = useLocation();
+    const { id, nome, cpf } = location.state;
+    const [usuarios, setUsuarios] = useRecoilState(usuariosState);
+    const [aposta, setAposta] = useState<number[]>([]);
+
+    const adiciona = (x : number) => {
+        if(aposta.length < 5){
+            setAposta([...aposta, x]);
+        }
+    }
+
+    // var pessoaAux = usuarios.find(e => e.cpf == cpf);
+    // if(pessoaAux != undefined){
+    //     return pessoaAux;
+    // }
+    // else{
+    //     setUsuarios([ ...usuarios, {id: id, nome: nome, cpf: cpf, aposta: []} ]);
+    //     return usuarios[usuarios.length];
+    // }
+    
     return( 
         <div id={styles.aposta}>
         <div className={styles.gridContainer}>
@@ -57,11 +80,11 @@ const Aposta: React.FC = () => {
             <button className={styles.gridItem}>50</button>
         </div>
         <div id={styles.visor}>
-            <div className={styles.escolhido}>1</div>
-            <div className={styles.escolhido}>2</div>
-            <div className={styles.escolhido}>3</div>
-            <div className={styles.escolhido}>4</div>
-            <div className={styles.escolhido}>5</div>
+            <div className={styles.escolhido}>{aposta.length>0? aposta[0] : ""}</div>
+            <div className={styles.escolhido}>{aposta.length>1? aposta[1] : ""}</div>
+            <div className={styles.escolhido}>{aposta.length>2? aposta[2] : ""}</div>
+            <div className={styles.escolhido}>{aposta.length>3? aposta[3] : ""}</div>
+            <div className={styles.escolhido}>{aposta.length>4? aposta[4] : ""}</div>
         </div>
         <div id={styles.footer}>
             <Link id={styles.voltar} to="/">Voltar</Link>
