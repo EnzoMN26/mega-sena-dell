@@ -46,6 +46,11 @@
     justify-content: center;
     align-items: center;
     margin: 0vh 4vh 1vh 4vh;
+    cursor: pointer;
+}
+
+.botao:hover{
+    color: red;
 }
 
 #form{

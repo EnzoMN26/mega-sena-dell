@@ -28,7 +28,6 @@ const Aposta: React.FC = (props: any) => {
             }
             else{
                 setUsuarios([ ...usuarios, {id: id, nome: nome, cpf: cpf, aposta: [{id: idAposta, numeros: aposta}]} ]);
-                console.log(usuarios)
             }
             setIdAposta(idAposta+1);
         }
@@ -108,7 +107,9 @@ const Aposta: React.FC = (props: any) => {
             <button id={styles.surpresinha}>SURPRESINHA</button>
             <div id={styles.rightButtons}>
             <button onClick={() => confirmAposta()} className={styles.botao}>Confirmar Aposta</button>
-            <Link className={styles.botao} to="/">Confirmar e Voltar</Link>
+            {aposta.length == 5? 
+            <Link onClick={() => confirmAposta()} className={styles.botao} to="/">Confirmar e Voltar</Link> :
+            <button className={styles.botao}>Confirmar e Voltar</button>}
             </div>        
         </div>
     </div>

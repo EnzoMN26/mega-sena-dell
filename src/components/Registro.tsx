@@ -48,7 +48,7 @@ const Registro: React.FC = () => {
                 <Link className={styles.botao} to="/" >Voltar</Link>
                 {validacao? 
                 <Link className={styles.botao} to='/aposta' state={{id: id.current, nome: nome, cpf: cpf}}>Confirmar</Link> :
-                <Link className={styles.botao} to="/registro">Confirmar</Link>}
+                <button className={styles.botao}>Confirmar</button>}
             </div>
         </div>
     )
