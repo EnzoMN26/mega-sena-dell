@@ -8,13 +8,13 @@ const pessoasTeste = [{
     id: 2020,
     nome: "Enzo",
     cpf: "02304950321",
-    aposta: [{id: 2323, numeros: [1,2,3,4,5]}, {id: 2325, numeros: [1,2,7,5,8]}]
+    aposta: [{id: 2323, numeros: [11,22,33,44,55]}, {id: 2325, numeros: [1,2,7,5,8]}]
 },
 {
     id: 2021,
     nome: "Renata",
     cpf: "02354950321",
-    aposta: [{id: 2323, numeros: [1,2,3,4,5]}]
+    aposta: [{id: 2326, numeros: [1,2,3,4,5]}]
 }]
 
 const Sorteio: React.FC = () => {
@@ -101,20 +101,44 @@ const Sorteio: React.FC = () => {
                         <div>Numeros sorteados</div>
                         <div>{numGanhador.map(e => <span className={styles.numResultado}>{e}  </span>)}</div>
                     </div>
-                    <table id={styles.table}>
-                        <tbody id={styles.tableBody}>
-                            {pessoasTeste.map((ganhador) => {
-                                return (
-                                    <tr key={ganhador.id}>
-                                        <td>{ganhador.nome}</td>
-                                        <td>{ganhador.cpf}</td>
-                                        <td>{ganhador.aposta[0].id}</td>
-                                    </tr>
-                                )
-                            })
-                            }
-                        </tbody>
-                    </table>
+                    {pessoasTeste.length > 0 ?
+                    <div>
+                        <div>Ganhadores</div>
+                        <table id={styles.table}>
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Nome
+                                    </td>
+                                    <td>
+                                        Cpf
+                                    </td>
+                                    <td>
+                                        Aposta
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody id={styles.tableBody}>
+                                {pessoasTeste.map(ganhador => {
+                                    return ganhador.aposta.map(aposta => {
+                                        return (
+                                            <tr key={ganhador.id}>
+                                                <td>{ganhador.nome}</td>
+                                                <td>{ganhador.cpf}</td>
+                                                <td>{aposta.numeros.map(numero => `${numero} `)}</td>
+                                            </tr>
+                                        )
+                                    })})
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    :
+                    <div>Não há Ganhadores</div>
+                    }
+                    <div id={styles.footer}>
+                        <Link className={styles.link} to="/">Confirmar</Link>
+                    </div>
                 </div>
             }
         </div>
