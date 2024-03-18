@@ -8,7 +8,6 @@ const Lista: React.FC = () => {
     return( 
         <div id={styles.listaApostas}>
             {usuarios.some(usuario => usuario.aposta.length > 0) ? 
-            <>
             <div id={styles.divTabela}>
                 <table>
                     <thead>
@@ -44,13 +43,12 @@ const Lista: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-            <div id={styles.footer}>
-                <Link className={styles.link} to="/">Voltar</Link>
-            </div>
-            </>
             :
             <div id={styles.semApostas}>Não existem apostas no momento!</div>
             }
+            <div id={styles.footer}>
+                <Link className={styles.link} to="/">Voltar</Link>
+            </div>
         </div>
     )
 }

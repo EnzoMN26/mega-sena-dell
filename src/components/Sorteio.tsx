@@ -127,39 +127,41 @@ const Sorteio: React.FC = () => {
                     {pessoasTeste.length > 0 ?
                         <div>
                             <div>Ganhadores</div>
-                            <table id={styles.table}>
-                                <thead>
-                                    <tr>
-                                        <td>
-                                            Nome
-                                        </td>
-                                        <td>
-                                            Cpf
-                                        </td>
-                                        <td>
-                                            ID Aposta
-                                        </td>
-                                        <td>
-                                            Aposta
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody id={styles.tableBody}>
-                                    {pessoasTeste.map(ganhador => {
-                                        return ganhador.aposta.map((aposta, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{ganhador.nome}</td>
-                                                    <td>{ganhador.cpf}</td>
-                                                    <td>{aposta.id}</td>
-                                                    <td>{aposta.numeros.map(numero => `${numero} `)}</td>
-                                                </tr>
-                                            )
+                            <div id={styles.divTable}>
+                                <table id={styles.table}>
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                Nome
+                                            </td>
+                                            <td>
+                                                Cpf
+                                            </td>
+                                            <td>
+                                                ID Aposta
+                                            </td>
+                                            <td>
+                                                Aposta
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id={styles.tableBody}>
+                                        {pessoasTeste.map(ganhador => {
+                                            return ganhador.aposta.map((aposta, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td>{ganhador.nome}</td>
+                                                        <td>{ganhador.cpf}</td>
+                                                        <td>{aposta.id}</td>
+                                                        <td>{aposta.numeros.map(numero => `${numero} `)}</td>
+                                                    </tr>
+                                                )
+                                            })
                                         })
-                                    })
-                                    }
-                                </tbody>
-                            </table>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         :
                         <div>Não há Ganhadores</div>
