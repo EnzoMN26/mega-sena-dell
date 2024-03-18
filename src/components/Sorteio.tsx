@@ -5,18 +5,18 @@ import { Aposta, Pessoa, usuariosState } from "../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
 //Objetos apenas para teste em desenvolvimento (trocar suas chamadas depois dos testes)
-const pessoasTeste = [{
-    id: 2020,
-    nome: "Enzo",
-    cpf: "02304950321",
-    aposta: [{ id: 2323, numeros: [11, 22, 33, 44, 55] }, { id: 2325, numeros: [1, 2, 7, 5, 8] }]
-},
-{
-    id: 2021,
-    nome: "Renata",
-    cpf: "02354950321",
-    aposta: [{ id: 2326, numeros: [1, 2, 3, 4, 5] }]
-}]
+// const pessoasTeste = [{
+//     id: 2020,
+//     nome: "Enzo",
+//     cpf: "02304950321",
+//     aposta: [{ id: 2323, numeros: [11, 22, 33, 44, 55] }, { id: 2325, numeros: [1, 2, 7, 5, 8] }]
+// },
+// {
+//     id: 2021,
+//     nome: "Renata",
+//     cpf: "02354950321",
+//     aposta: [{ id: 2326, numeros: [1, 2, 3, 4, 5] }]
+// }]
 
 const Sorteio: React.FC = () => {
     const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
@@ -124,7 +124,7 @@ const Sorteio: React.FC = () => {
                         <div>Numeros sorteados</div>
                         <div>{numGanhador.map(e => <span className={styles.numResultado}>{e}  </span>)}</div>
                     </div>
-                    {pessoasTeste.length > 0 ?
+                    {ganhadores.length > 0 ?
                         <div>
                             <div>Ganhadores</div>
                             <div id={styles.divTable}>
@@ -146,7 +146,7 @@ const Sorteio: React.FC = () => {
                                         </tr>
                                     </thead>
                                     <tbody id={styles.tableBody}>
-                                        {pessoasTeste.map(ganhador => {
+                                        {ganhadores.map(ganhador => {
                                             return ganhador.aposta.map((aposta, index) => {
                                                 return (
                                                     <tr key={index}>
@@ -168,11 +168,16 @@ const Sorteio: React.FC = () => {
                     }
                     <div id={styles.footer}>
                         <div id={styles.numerosApostados}>
-                            <div>Número:Quantidade de Escolhas</div>
-                            <div id={styles.listaApostados}>
-                                {organizaNumApostados(qntNumApostados.current).map(e => 
-                                    <div>{`${e.numero}:${e.quant}`}</div>)}
-                            </div>
+                            {usuarios.some(usuarios => usuarios.aposta.some(aposta => aposta.numeros.length > 0))?
+                            <>
+                                <div>Número:Quantidade de Escolhas</div>
+                                <div id={styles.listaApostados}>
+                                    {organizaNumApostados(qntNumApostados.current).map(e => 
+                                        <div>{`${e.numero}:${e.quant}`}</div>)}
+                                </div>
+                            </>
+                            :
+                            <></>}
                         </div>
                         <Link className={styles.link} to="/">Confirmar</Link>
                     </div>
