@@ -44,6 +44,12 @@ const Sorteio: React.FC = () => {
         }).filter(e => e.quant>0)
     }
 
+    const limpaApostas = () => {
+        setUsuarios(usuarios.map(usuario => {
+            return {...usuario, aposta: []}
+        }))
+    }
+
     //executa o sorteio
     function realizarSorteio() {
 
@@ -172,14 +178,16 @@ const Sorteio: React.FC = () => {
                             <>
                                 <div>Número:Quantidade de Escolhas</div>
                                 <div id={styles.listaApostados}>
-                                    {organizaNumApostados(qntNumApostados.current).map(e => 
-                                        <div>{`${e.numero}:${e.quant}`}</div>)}
+                                    {organizaNumApostados(qntNumApostados.current).map((e, index) =>  
+                                        <div key={index}>
+                                            {`${e.numero}:${e.quant}`}
+                                        </div>)}
                                 </div>
                             </>
                             :
                             <></>}
                         </div>
-                        <Link className={styles.link} to="/">Confirmar</Link>
+                        <Link onClick={limpaApostas} className={styles.link} to="/">Confirmar</Link>
                     </div>
                 </div>
             }
