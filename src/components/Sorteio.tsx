@@ -24,7 +24,7 @@ const Sorteio: React.FC = () => {
     const [iniciar, setIniciar] = useState(true); //boolean para controlar o aparecimento do botao de iniciar sorteio.
     const [numGanhador, setNumGanhador] = useState<number[]>([]); //resultado do sorteio
     const [ganhadores, setGanhadores] = useState<Pessoa[]>([]); //guarda os ganhadores do sorteio, ja com apenas as apostas vencedoras filtradas
-    const qntNumApostados = useRef<number[]>(Array(50).fill(0));
+    const qntNumApostados = useRef<number[]>(Array(50).fill(0)); //array de 50 numeros, inicializado em 0, para armazenar as quantidade que cada um é apostado. O indice + 1 no array representa o numero.
 
     //compara dois arrays, vendo se o primeiro possui pelo menos 5 elementos iguais ao segundo
     function comparaApostas(a: number[], b: number[]): boolean {
@@ -35,6 +35,7 @@ const Sorteio: React.FC = () => {
         return count == 5 ? true : false;
     }
 
+    //organiza o array de numeros apostados através de seus indices.
     function organizaNumApostados(numeros : number[]){
         return numeros.map((e, index) => 
         ({ numero: index + 1, quant: e })).sort((a, b) => 

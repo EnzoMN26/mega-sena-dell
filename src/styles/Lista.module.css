@@ -1,0 +1,28 @@
+#listaApostas{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+    align-items: center;
+}
+
+
+#tableBody{
+    gap: 10px;
+}
+
+
+td{
+    padding: 5px 20px 5px 20px;
+}
+
+#semApostas{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
