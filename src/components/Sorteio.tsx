@@ -112,8 +112,12 @@ const Sorteio: React.FC = () => {
                     <div id={styles.sorteando}>Sorteando</div>
                     <div id={styles.loader}></div>
                 </> :
-                <>
-                    <button className={styles.botao} onClick={() => realizarSorteio()}>Iniciar Sorteio</button>
+                <>  <div id={styles.divIniciar}>
+                        <button className={styles.botao} onClick={() => realizarSorteio()}>Iniciar Sorteio</button>
+                    </div>
+                    <div id={styles.footerInicial}>
+                        <Link className={styles.link} to="/">Voltar</Link>
+                    </div>
                 </> :
                 <div id={styles.resultado}>
                     <div id={styles.resultadoHeader}>
