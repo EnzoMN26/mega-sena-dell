@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import styles from "../../styles/InventarioLogin.module.css";
 import { useRecoilState } from "recoil";
-import { usuariosState, contadorId } from "../../resources/recoil";
+import { usuariosState } from "../../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
+//Componente responsavel por renderizar a tela de login do inventario
 const InventarioLogin: React.FC = () => {
-  const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
+  const [usuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   const [cpf, setCpf] = useState(""); //cpf do usuario se cadastrando
   const [validacao, setValidacao] = useState(false); //booleano para verificar a validação dos campos de registro
   const [avisoErro, setAvisoErro] = useState(""); //guarda a mensagem de erro ao preencher os campos
   const id = useRef(0); //id do usuario se cadastrando
 
-  //retorna verdadeiro caso exista alguem com o cpf informado, e falso caso contrario
+  //retorna verdadeiro caso exista alguem cadastrado com o cpf informado, e falso caso contrario
   function findPessoa(): boolean {
     var pessoa = usuarios.find((e) => e.cpf == cpf);
     if (pessoa != undefined) {
@@ -21,7 +22,7 @@ const InventarioLogin: React.FC = () => {
     return false;
   }
 
-  //realiza a validação da pessoa quando o cpf está preenchido
+  //monitora o input do cpf, chamando a funcao que valido o mesmo caso o input respeite os requesitos
   useEffect(() => {
     if (cpf.length == 11) {
       findPessoa() ? setValidacao(true) : setValidacao(false);

@@ -6,7 +6,7 @@ import Loja from "./components/Loja/Loja";
 import Inventario from "./components/Inventario/Inventario";
 import Aposta from "./components/Apostas/Aposta";
 import Menu from "./components/Home/Menu";
-import Lista from "./components/Apostas/ListaApostas";
+import ListaAposta from "./components/Apostas/ListaApostas";
 import LojaLogin from "./components/Loja/LojaLogin";
 import InventarioLogin from "./components/Inventario/InventarioLogin";
 import Start from "./components/Home/Start";
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "lista",
-        element: <Lista />,
+        element: <ListaAposta />,
       },
       {
         path: "lojaLogin",

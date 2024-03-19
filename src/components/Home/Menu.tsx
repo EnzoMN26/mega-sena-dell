@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "../../styles/Menu.module.css";
 
+//Componente responsavel por renderizar o menu da aplicacao, onde ficam os links para as funcoes existentes no programa.
 const Menu: React.FC = () => {
   return (
     <div id={styles.menu}>

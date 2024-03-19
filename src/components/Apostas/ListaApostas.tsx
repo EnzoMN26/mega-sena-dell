@@ -3,8 +3,9 @@ import styles from "../../styles/ListaApostas.module.css";
 import { usuariosState } from "../../resources/recoil";
 import { Link } from "react-router-dom";
 
-const Lista: React.FC = () => {
-  const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
+//Componente responsavel por renderizar a lista de apostas atual
+const ListaApostas: React.FC = () => {
+  const [usuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   return (
     <div id={styles.listaApostas}>
       {usuarios.some((usuario) => usuario.aposta.length > 0) ? (
@@ -19,7 +20,7 @@ const Lista: React.FC = () => {
               </tr>
             </thead>
             <tbody id={styles.tableBody}>
-              {usuarios.map((ganhador) => {
+              {usuarios.map((ganhador) => { //percorre os usuario listando as apostas existentes
                 return ganhador.aposta.map((aposta, index) => {
                   return (
                     <tr key={index}>
@@ -46,4 +47,4 @@ const Lista: React.FC = () => {
   );
 };
 
-export default Lista;
+export default ListaApostas;

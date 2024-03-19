@@ -4,11 +4,13 @@ import { Pessoa, usuariosState } from "../../resources/recoil";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+
+//Componente responsavel por renderizar a loja, onde é possivel comprar itens utilizando o saldo de cada Usuario.
 const Loja: React.FC = () => {
-  const location = useLocation();
+  const location = useLocation(); //inicializa objeto para recuperar os states passados ao componente
   const { id } = location.state; //dados recebidos do componente de Login
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
-  const [usuarioAtual, setUsuarioAtual] = useState<Pessoa>(); //dados dos usuarios existentes
+  const [usuarioAtual, setUsuarioAtual] = useState<Pessoa>(); //dados dos usuario utilizando a loja
   const [aviso, setAviso] = useState(""); //dados dos usuarios existentes
 
   //Atribui o produto a pessoa. Caso ela ja possua o produto a função encontra este produto e aumenta sua quantidade.
@@ -16,7 +18,7 @@ const Loja: React.FC = () => {
     //verifica se o usuario possui saldo suficiente
     if (usuarioAtual == undefined || usuarioAtual.saldo < valor) {
       setAviso("saldo insuficiente");
-    } else {
+    } else { //atribui o produto ao usuario
       setUsuarios(
         usuarios.map((usuario) => {
           return usuario.id == id
@@ -38,6 +40,7 @@ const Loja: React.FC = () => {
             : usuario;
         })
       );
+      //atualiza o state local que representa o usuario que esta utilizando a loja
       setUsuarioAtual({
         ...usuarioAtual,
         saldo: usuarioAtual.saldo - valor,
@@ -46,7 +49,7 @@ const Loja: React.FC = () => {
     }
   }
 
-  //Executa ao inciar o programa, salvando o usuario atual em um state
+  //Executa ao inciar o programa, salvando as informacoes do usuario atual em um state
   useEffect(() => {
     setUsuarioAtual(usuarios.find((usuario) => usuario.id == id));
   }, []);

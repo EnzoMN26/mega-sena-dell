@@ -2,31 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/Sorteio.module.css";
 import { useRecoilState } from "recoil";
 import { Aposta, Pessoa, usuariosState } from "../../resources/recoil";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 //Objetos apenas para teste em desenvolvimento (trocar suas chamadas depois dos testes)
-// const pessoasTeste = [
-//   {
-//     id: 2020,
-//     nome: "Renata",
-//     cpf: "02304950321",
-//     saldo: 0,
-//     itens: [],
-//     aposta: [
-//       { id: 2323, numeros: [11, 22, 33, 44, 55] },
-//       { id: 2325, numeros: [1, 2, 7, 5, 8] },
-//     ],
-//   },
-//   {
-//     id: 2021,
-//     nome: "Enzo",
-//     cpf: "02354950321",
-//     saldo: 0,
-//     itens: [],
-//     aposta: [{ id: 2326, numeros: [1, 2, 3, 4, 5] }],
-//   },
-// ];
 
+//Componente responsavel por renderizar a tela onde o sorteio é realizado e tambem o resultado do sorteio
 const Sorteio: React.FC = () => {
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   const [loader, setLoader] = useState(false); //boolean para controlar o aparecimento do loader. (que serve apenas como um toque visual)
@@ -44,7 +24,8 @@ const Sorteio: React.FC = () => {
     return count == 5 ? true : false;
   }
 
-  //organiza o array de numeros apostados através de seus indices.
+  //organiza o array de numeros apostados através de seus indices, onde cada indice somado uma unidade (+ 1) representa o numero apostado.
+  // [2, 7, 1, 0] -> o numero 1 foi escolhido 2 vezes, o numero 2 foi escolhido 7 vezes...
   function organizaNumApostados(numeros: number[]) {
     return numeros
       .map((e, index) => ({ numero: index + 1, quant: e }))
@@ -54,7 +35,7 @@ const Sorteio: React.FC = () => {
       .filter((e) => e.quant > 0);
   }
 
-  //zera as apostas dos usuario e entrega a recompensa para os ganhadores
+  //zera as apostas dos usuario e soma a recompensa (1000 dividio entre os ganhadores) ao saldo dos ganhadores
   const finalizaSorteio = () => {
     const recompensa = 1000 / ganhadores.length;
 
@@ -67,6 +48,7 @@ const Sorteio: React.FC = () => {
     );
   };
 
+  //funcao de ordenacao por ordem alfabetica, eh chamada pela funcao sort e utilizado como comparador dos elementos do array
   function ordemAlfabetica(a: Pessoa, b: Pessoa): number {
     if (a.nome < b.nome) {
       return -1;
@@ -77,12 +59,12 @@ const Sorteio: React.FC = () => {
     return 0;
   }
 
-  //executa o sorteio
+  //executa o processo do sorteio
   function realizarSorteio() {
-    setLoader(true);
+    setLoader(true); //liga o elemento que representa o o loading do sorteio
 
-    var ganhadoresAux: Pessoa[] = [];
-    var numGanhadorTemp: number[] = [];
+    var ganhadoresAux: Pessoa[] = []; //array temporario para armazenar os ganhadores do sorteio
+    var numGanhadorTemp: number[] = []; //array temporario para armazenar os numeros vencedores que estao sendo sorteados
 
     //sorteia 4 numeros antes de entrar no while responsavel por realizar o sorteio 26 vezes. (ou seja, sorteia os 5 primeiros e mais 25 caso necessário)
     while (numGanhadorTemp.length < 4) {
@@ -94,18 +76,20 @@ const Sorteio: React.FC = () => {
 
     var counter: number = 0;
 
-    //realiza o sorteio dos numeros enquanto confere os vencedores, acaba depois de 25 tentativas ou depois de um vencedor
+    //realiza o sorteio dos numeros enquanto confere os vencedores, acaba depois de 25 tentativas ou depois de encontrar pelo menos um vencedor
     while (ganhadoresAux.length < 1 && counter <= 25) {
       var num = 0;
+
+      //sorteia um numero aleatorio até encontrar um que ainda nao tenha sido sorteado
       do {
         num = Math.floor(Math.random() * 50) + 1;
       } while (numGanhadorTemp.includes(num));
 
-      numGanhadorTemp.push(num);
+      numGanhadorTemp.push(num); //adiciona o numero sorteado aos numeros vencedores
 
       setNumGanhador(numGanhadorTemp);
 
-      //filtra pelas pessoas que acertaram alguma aposta
+      //tenta encontrar alguem que tenha acertado pelo menos 5 numeros em suas apostas
       usuarios.forEach((user) => {
         var apostas: Aposta[] = user.aposta.filter((aposta) =>
           comparaApostas(aposta.numeros, numGanhadorTemp)
@@ -125,7 +109,7 @@ const Sorteio: React.FC = () => {
       counter++;
     }
 
-    //faz a contagem dos numeros apostados e suas quantidades
+    //faz a contagem dos numeros apostados e suas quantidades totais
     usuarios.forEach((usuario) => {
       usuario.aposta.map((aposta) => {
         aposta.numeros.forEach(
@@ -136,7 +120,7 @@ const Sorteio: React.FC = () => {
       });
     });
 
-    //desliga o simbolo de carregando depois de 1 segundo
+    //desliga o simbolo de carregando depois de 1 segundo (timeout utilizado apenas por aparencia, deve ser retirado em uma aplicacao em producao)
     setTimeout(() => {
       setIniciar(false);
     }, 1000);

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { usuariosState, contadorIdAposta } from "../../resources/recoil";
 
-const Aposta: React.FC = (props: any) => {
+//Componente responsavel por renderizar a tela onde eh realizada a aposta
+const Aposta: React.FC = () => {
   const location = useLocation(); //inicializa objeto para recuperar os states passados ao componente
   const { id, nome, cpf } = location.state; //dados recebidos do componente de registro
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes

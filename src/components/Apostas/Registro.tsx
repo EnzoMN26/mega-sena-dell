@@ -4,8 +4,9 @@ import { useRecoilState } from "recoil";
 import { usuariosState, contadorId } from "../../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
+//Componenente responsavel por renderizar a tela de reconhecimento (atraves do CPF) ou registro do usuario ao tentar realizar a aposta
 const Registro: React.FC = () => {
-  const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
+  const [usuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   const [idGlobal, setIdGlobal] = useRecoilState(contadorId); //id global de usuarios
   const [nome, setNome] = useState(""); //nome do usuario se cadastrando
   const [cpf, setCpf] = useState(""); //cpf do usuario se cadastrando
@@ -25,6 +26,7 @@ const Registro: React.FC = () => {
     }
   };
 
+  //popula o state que apresenta o erro ao preencher os campos de registro
   const mostraAvisoErro = () => {
     if (nome == "") {
       setAvisoErro("campo Nome vazio");
@@ -33,7 +35,7 @@ const Registro: React.FC = () => {
     }
   };
 
-  //realiza a validação da pessoa quando os componentes estão ambos preenchidos
+  //monitora os inputs para fazer a validacao quando ambos estao preenchidos adequadamente
   useEffect(() => {
     if (nome != "" && cpf.length == 11) {
       setValidacao(true);
