@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "../styles/Sorteio.module.css";
+import styles from "../../styles/Sorteio.module.css";
 import { useRecoilState } from "recoil";
-import { Aposta, Pessoa, usuariosState } from "../resources/recoil";
+import { Aposta, Pessoa, usuariosState } from "../../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
 //Objetos apenas para teste em desenvolvimento (trocar suas chamadas depois dos testes)

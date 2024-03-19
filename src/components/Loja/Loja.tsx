@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import styles from "../styles/Loja.module.css";
-import { Pessoa, usuariosState } from "../resources/recoil";
+import styles from "../../styles/Loja.module.css";
+import { Pessoa, usuariosState } from "../../resources/recoil";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 

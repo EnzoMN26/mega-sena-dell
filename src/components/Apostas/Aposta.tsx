@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import styles from "../styles/Aposta.module.css";
+import styles from "../../styles/Aposta.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { usuariosState, contadorIdAposta } from "../resources/recoil";
+import { usuariosState, contadorIdAposta } from "../../resources/recoil";
 
 const Aposta: React.FC = (props: any) => {
   const location = useLocation();

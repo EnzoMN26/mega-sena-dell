@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "../styles/Registro.module.css";
+import styles from "../../styles/Registro.module.css";
 import { useRecoilState } from "recoil";
-import { usuariosState, contadorId } from "../resources/recoil";
+import { usuariosState, contadorId } from "../../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
 const Registro: React.FC = () => {

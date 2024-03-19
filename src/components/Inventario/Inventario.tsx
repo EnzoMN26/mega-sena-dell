@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import styles from "../styles/Inventario.module.css";
+import styles from "../../styles/Inventario.module.css";
 import { useRecoilState } from "recoil";
-import { Pessoa, usuariosState } from "../resources/recoil";
+import { Pessoa, usuariosState } from "../../resources/recoil";
 import { useEffect, useState } from "react";
 
 const Inventario: React.FC = () => {

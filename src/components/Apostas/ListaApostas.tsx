@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import styles from "../styles/Lista.module.css";
-import { usuariosState } from "../resources/recoil";
+import styles from "../../styles/ListaApostas.module.css";
+import { usuariosState } from "../../resources/recoil";
 import { Link } from "react-router-dom";
 
 const Lista: React.FC = () => {

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import styles from "../styles/InventarioLogin.module.css";
+import styles from "../../styles/LojaLogin.module.css";
 import { useRecoilState } from "recoil";
-import { usuariosState, contadorId } from "../resources/recoil";
+import { usuariosState, contadorId } from "../../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
-const InventarioLogin: React.FC = () => {
+const LoginPessoa: React.FC = () => {
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   const [cpf, setCpf] = useState(""); //cpf do usuario se cadastrando
   const id = useRef(0); //id do usuario se cadastrando
@@ -30,7 +30,7 @@ const InventarioLogin: React.FC = () => {
   }, [cpf]);
 
   return (
-    <div id={styles.inventario}>
+    <div id={styles.login}>
       <div id={styles.form}>
         <div className={styles.inputGroup}>
           <label className={styles.label} htmlFor="cpf">
@@ -52,11 +52,7 @@ const InventarioLogin: React.FC = () => {
           Voltar
         </Link>
         {validacao ? (
-          <Link
-            className={styles.botao}
-            to="/inventario"
-            state={{ id: id.current }}
-          >
+          <Link className={styles.botao} to="/loja" state={{ id: id.current }}>
             Confirmar
           </Link>
         ) : (
@@ -67,4 +63,4 @@ const InventarioLogin: React.FC = () => {
   );
 };
 
-export default InventarioLogin;
+export default LoginPessoa;
