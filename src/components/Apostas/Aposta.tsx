@@ -20,7 +20,7 @@ const Aposta: React.FC = (props: any) => {
     }
   }
 
-  //faz a atribuição da aposta à pessoa
+  //faz a atribuição da aposta à pessoa, caso a pessoa não esteja cadastrada também realiza o cadastro
   function confirmAposta() {
     if (aposta.length == 5) {
       var pessoaAux = usuarios.find((e) => e.id == id);
@@ -64,6 +64,23 @@ const Aposta: React.FC = (props: any) => {
     }
     setAposta(apostaTemp);
   }
+
+  //realiza o cadastro da pessoa ao sair caso ela não faça nenhuma aposta
+  const cadastraAoSair = () => {
+    if (!usuarios.find((usuario) => usuario.id == id)) {
+      setUsuarios([
+        ...usuarios,
+        {
+          id: id,
+          nome: nome,
+          cpf: cpf,
+          saldo: 0,
+          aposta: [],
+          itens: [],
+        },
+      ]);
+    }
+  };
 
   return (
     <div id={styles.aposta}>
@@ -237,7 +254,7 @@ const Aposta: React.FC = (props: any) => {
         </div>
       </div>
       <div id={styles.footer}>
-        <Link id={styles.voltar} to="/">
+        <Link onClick={cadastraAoSair} id={styles.voltar} to="/">
           Voltar
         </Link>
         <button onClick={() => surpresinha()} id={styles.surpresinha}>
@@ -247,17 +264,6 @@ const Aposta: React.FC = (props: any) => {
           <button onClick={() => confirmAposta()} className={styles.botao}>
             Confirmar Aposta
           </button>
-          {aposta.length == 5 ? (
-            <Link
-              onClick={() => confirmAposta()}
-              className={styles.botao}
-              to="/"
-            >
-              Confirmar e Voltar
-            </Link>
-          ) : (
-            <button className={styles.botao}>Confirmar e Voltar</button>
-          )}
         </div>
       </div>
     </div>
