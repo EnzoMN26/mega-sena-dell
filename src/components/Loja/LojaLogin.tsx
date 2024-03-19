@@ -7,8 +7,9 @@ import { useEffect, useRef, useState } from "react";
 const LoginPessoa: React.FC = () => {
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   const [cpf, setCpf] = useState(""); //cpf do usuario se cadastrando
-  const id = useRef(0); //id do usuario se cadastrando
   const [validacao, setValidacao] = useState(false); //booleano para verificar a validação dos campos de registro
+  const [avisoErro, setAvisoErro] = useState(""); //guarda a mensagem de erro ao preencher os campos
+  const id = useRef(0); //id do usuario se cadastrando
 
   //retorna verdadeiro caso exista alguem com o cpf informado, e falso caso contrario
   function findPessoa(): boolean {
@@ -51,12 +52,18 @@ const LoginPessoa: React.FC = () => {
         <Link className={styles.botao} to="/">
           Voltar
         </Link>
+        <div id={styles.aviso}>{avisoErro}</div>
         {validacao ? (
           <Link className={styles.botao} to="/loja" state={{ id: id.current }}>
             Confirmar
           </Link>
         ) : (
-          <button className={styles.botao}>Confirmar</button>
+          <button
+            onClick={() => setAvisoErro("CPF não encontrado")}
+            className={styles.botao}
+          >
+            Confirmar
+          </button>
         )}
       </div>
     </div>

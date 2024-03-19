@@ -62,3 +62,11 @@
   height: 70%;
   gap: 10px;
 }
+
+#aviso {
+  display: flex;
+  font-family: "VT323", monospace;
+  font-size: 20px;
+  color: red;
+  align-items: center;
+}

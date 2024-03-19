@@ -9,8 +9,9 @@ const Registro: React.FC = () => {
   const [idGlobal, setIdGlobal] = useRecoilState(contadorId); //id global de usuarios
   const [nome, setNome] = useState(""); //nome do usuario se cadastrando
   const [cpf, setCpf] = useState(""); //cpf do usuario se cadastrando
-  const id = useRef(0); //id do usuario se cadastrando
   const [validacao, setValidacao] = useState(false); //booleano para verificar a validação dos campos de registro
+  const [avisoErro, setAvisoErro] = useState(""); //guarda a mensagem de erro ao preencher os campos
+  const id = useRef(0); //id do usuario se cadastrando
 
   //caso o cpf utilizado ja esteja mapeado a alguma pessoa, ele encontra e passa o id da pessoa ja existente para o proximo componente.
   //caso contrário ele passa um novo id ainda não utilizado
@@ -21,6 +22,14 @@ const Registro: React.FC = () => {
     } else {
       id.current = idGlobal + 1;
       setIdGlobal(id.current);
+    }
+  };
+
+  const mostraAvisoErro = () => {
+    if (nome == "") {
+      setAvisoErro("campo Nome vazio");
+    } else {
+      setAvisoErro("campo CPF inválido");
     }
   };
 
@@ -45,9 +54,10 @@ const Registro: React.FC = () => {
             type="text"
             id="nome"
             className={styles.input}
-            maxLength={50}
+            maxLength={32}
+            placeholder="Insira seu Nome"
             value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            onChange={(e) => setNome(e.target.value.replace(/[^A-Za-z\s]/, ""))}
           />
         </div>
         <div className={styles.inputGroup}>
@@ -59,6 +69,7 @@ const Registro: React.FC = () => {
             id="cpf"
             className={styles.input}
             maxLength={11}
+            placeholder="Insira seu CPF de 11 dígitos"
             value={cpf}
             onChange={(e) => setCpf(e.target.value.replace(/[^0-9]/, ""))}
           />
@@ -68,6 +79,7 @@ const Registro: React.FC = () => {
         <Link className={styles.botao} to="/">
           Voltar
         </Link>
+        <div id={styles.aviso}>{avisoErro}</div>
         {validacao ? (
           <Link
             className={styles.botao}
@@ -77,7 +89,9 @@ const Registro: React.FC = () => {
             Confirmar
           </Link>
         ) : (
-          <button className={styles.botao}>Confirmar</button>
+          <button onClick={mostraAvisoErro} className={styles.botao}>
+            Confirmar
+          </button>
         )}
       </div>
     </div>
