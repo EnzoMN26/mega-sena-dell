@@ -8,8 +8,10 @@ import { useEffect, useRef, useState } from "react";
 // const pessoasTeste = [
 //   {
 //     id: 2020,
-//     nome: "Enzo",
+//     nome: "Renata",
 //     cpf: "02304950321",
+//     saldo: 0,
+//     itens: [],
 //     aposta: [
 //       { id: 2323, numeros: [11, 22, 33, 44, 55] },
 //       { id: 2325, numeros: [1, 2, 7, 5, 8] },
@@ -17,8 +19,10 @@ import { useEffect, useRef, useState } from "react";
 //   },
 //   {
 //     id: 2021,
-//     nome: "Renata",
+//     nome: "Enzo",
 //     cpf: "02354950321",
+//     saldo: 0,
+//     itens: [],
 //     aposta: [{ id: 2326, numeros: [1, 2, 3, 4, 5] }],
 //   },
 // ];
@@ -62,6 +66,16 @@ const Sorteio: React.FC = () => {
       })
     );
   };
+
+  function ordemAlfabetica(a: Pessoa, b: Pessoa): number {
+    if (a.nome < b.nome) {
+      return -1;
+    }
+    if (a.nome > b.nome) {
+      return 1;
+    }
+    return 0;
+  }
 
   //executa o sorteio
   function realizarSorteio() {
@@ -166,6 +180,16 @@ const Sorteio: React.FC = () => {
               ))}
             </div>
           </div>
+          <div id={styles.infos}>
+            <div>Rodadas Realizadas: {numGanhador.length - 4}</div>
+            <div>
+              Apostas Vencedoras:{" "}
+              {ganhadores.reduce(
+                (soma, pessoa) => soma + pessoa.aposta.length,
+                0
+              )}
+            </div>
+          </div>
           {ganhadores.length > 0 ? (
             <div>
               <div>Ganhadores</div>
@@ -180,7 +204,7 @@ const Sorteio: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody id={styles.tableBody}>
-                    {ganhadores.map((ganhador) => {
+                    {ganhadores.sort(ordemAlfabetica).map((ganhador) => {
                       return ganhador.aposta.map((aposta, index) => {
                         return (
                           <tr key={index}>
@@ -207,7 +231,7 @@ const Sorteio: React.FC = () => {
                 usuarios.aposta.some((aposta) => aposta.numeros.length > 0)
               ) ? (
                 <>
-                  <div>Número:Quantidade de Escolhas</div>
+                  <div>Número Apostado:Quantidade de Apostas</div>
                   <div id={styles.listaApostados}>
                     {organizaNumApostados(qntNumApostados.current).map(
                       (e, index) => (
