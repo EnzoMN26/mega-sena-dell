@@ -5,21 +5,21 @@ const Menu: React.FC = () => {
   return (
     <div id={styles.menu}>
       <div id={styles.menuLinks}>
-        <Link className={styles.link} to="registro">
+        <Link className={styles.link} to="/registro">
           Fazer Aposta
         </Link>
-        <Link className={styles.link} to="lista">
+        <Link className={styles.link} to="/lista">
           Lista de Apostas
         </Link>
-        <Link className={styles.link} to="lojaLogin">
+        <Link className={styles.link} to="/lojaLogin">
           Loja
         </Link>
-        <Link className={styles.link} to="inventarioLogin">
+        <Link className={styles.link} to="/inventarioLogin">
           Inventário
         </Link>
       </div>
       <div id={styles.footer}>
-        <Link className={styles.link} to="sorteio">
+        <Link className={styles.link} to="/sorteio">
           Realizar Sorteio
         </Link>
       </div>

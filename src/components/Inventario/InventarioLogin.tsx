@@ -49,7 +49,7 @@ const InventarioLogin: React.FC = () => {
         </div>
       </div>
       <div id={styles.footer}>
-        <Link className={styles.botao} to="/">
+        <Link className={styles.botao} to="/menu">
           Voltar
         </Link>
         <div id={styles.aviso}>{avisoErro}</div>

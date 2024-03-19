@@ -254,7 +254,7 @@ const Aposta: React.FC = (props: any) => {
         </div>
       </div>
       <div id={styles.footer}>
-        <Link onClick={cadastraAoSair} id={styles.voltar} to="/">
+        <Link onClick={cadastraAoSair} id={styles.voltar} to="/menu">
           Voltar
         </Link>
         <button onClick={() => surpresinha()} id={styles.surpresinha}>

@@ -38,7 +38,7 @@ const Lista: React.FC = () => {
         <div id={styles.semApostas}>Não existem apostas no momento!</div>
       )}
       <div id={styles.footer}>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/menu">
           Voltar
         </Link>
       </div>

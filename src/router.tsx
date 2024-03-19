@@ -9,6 +9,7 @@ import Menu from "./components/Home/Menu";
 import Lista from "./components/Apostas/ListaApostas";
 import LojaLogin from "./components/Loja/LojaLogin";
 import InventarioLogin from "./components/Inventario/InventarioLogin";
+import Start from "./components/Home/Start";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <Start />,
+      },
+      {
+        path: "menu",
         element: <Menu />,
       },
       {

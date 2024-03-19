@@ -162,7 +162,7 @@ const Sorteio: React.FC = () => {
               </button>
             </div>
             <div id={styles.footerInicial}>
-              <Link className={styles.link} to="/">
+              <Link className={styles.link} to="/menu">
                 Voltar
               </Link>
             </div>
@@ -244,7 +244,7 @@ const Sorteio: React.FC = () => {
                 <></>
               )}
             </div>
-            <Link onClick={finalizaSorteio} className={styles.link} to="/">
+            <Link onClick={finalizaSorteio} className={styles.link} to="/menu">
               Confirmar
             </Link>
           </div>

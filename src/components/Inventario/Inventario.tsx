@@ -41,7 +41,7 @@ const Inventario: React.FC = () => {
         <div id={styles.semItens}>Inventário Vazio!</div>
       )}
       <div id={styles.footer}>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/menu">
           Voltar
         </Link>
       </div>

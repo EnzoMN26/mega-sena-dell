@@ -139,7 +139,7 @@ const Loja: React.FC = () => {
         </table>
       </div>
       <div id={styles.footer}>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/menu">
           Voltar
         </Link>
         <div id={styles.aviso}>{aviso}</div>
