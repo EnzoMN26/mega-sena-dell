@@ -20,8 +20,8 @@ const Registro: React.FC = () => {
             id.current = pessoa.id;
         }
         else{
-            setIdGlobal(idGlobal+1);
-            id.current = idGlobal;
+            id.current = idGlobal + 1;
+            setIdGlobal(id.current);
         }
     }
     

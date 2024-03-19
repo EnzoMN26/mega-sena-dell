@@ -58,7 +58,7 @@ const Sorteio: React.FC = () => {
         var ganhadoresAux: Pessoa[] = [];
         var numGanhadorTemp: number[] = [];
 
-        //sorteia 4 numeros an tes de entrar no while responsavel por realizar o sorteio 25 vezes
+        //sorteia 4 numeros antes de entrar no while responsavel por realizar o sorteio 25 vezes
         while (numGanhadorTemp.length < 4) {
             const num = Math.floor(Math.random() * 50) + 1
             if (!numGanhadorTemp.includes(num)) {
@@ -194,5 +194,5 @@ const Sorteio: React.FC = () => {
         </div>
     )
 }
-//qntNumApostados.current.map((e, index) => <div>{`${index+1}:${e}`}</div>
+
 export default Sorteio;
