@@ -8,6 +8,7 @@ import Aposta from "./components/Aposta";
 import Menu from "./components/Menu";
 import Lista from "./components/Lista";
 import LojaLogin from "./components/LojaLogin";
+import InventarioLogin from "./components/InventarioLogin";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "lojaLogin",
         element: <LojaLogin />,
+      },
+      {
+        path: "inventarioLogin",
+        element: <InventarioLogin />,
       },
     ],
   },

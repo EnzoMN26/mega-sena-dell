@@ -1,0 +1,61 @@
+#inventario {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  font-family: "VT323", monospace;
+  font-size: 25px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#divTabela {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 100%;
+  font-family: "VT323", monospace;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+#tableBody {
+  gap: 10px;
+  font-size: 25px;
+}
+
+td {
+  padding: 5px 20px 5px 20px;
+}
+
+#semItens {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+#footer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  padding-left: 10vh;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+  font-size: 25px;
+  font-family: "VT323", monospace;
+}
+
+.link:hover {
+  color: red;
+}
