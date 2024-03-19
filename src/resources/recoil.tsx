@@ -6,11 +6,18 @@ export type Aposta = {
     numeros: number[];
 }
 
+export type Item = {
+    id: string;
+    quantidade: number;
+}
+
 export type Pessoa = {
     id: number;
     nome: string;
     cpf: string;
+    dinheiro: number;
     aposta: Aposta[] | [];
+    itens: Item[] | [];
 }
 
 export const contadorId = atom<number>({

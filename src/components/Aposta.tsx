@@ -29,7 +29,7 @@ const Aposta: React.FC = (props: any) => {
                 setUsuarios(usuarios.map(e => e.id == pessoaAux?.id ? {...e, aposta: [...e.aposta, {id: idAposta, numeros: aposta}]} : e));
             }
             else{
-                setUsuarios([ ...usuarios, {id: id, nome: nome, cpf: cpf, aposta: [{id: idAposta, numeros: aposta}]} ]);
+                setUsuarios([ ...usuarios, {id: id, nome: nome, cpf: cpf, dinheiro: 0 , aposta: [{id: idAposta, numeros: aposta}], itens: []} ]);
             }
             setIdAposta(idAposta+1);
             setAposta([])

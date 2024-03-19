@@ -89,7 +89,9 @@ const Sorteio: React.FC = () => {
                             id: user.id,
                             nome: user.nome,
                             cpf: user.cpf,
-                            aposta: apostas
+                            aposta: apostas,
+                            dinheiro: user.dinheiro,
+                            itens: []
                         })
                 }
             })
@@ -128,7 +130,7 @@ const Sorteio: React.FC = () => {
                 <div id={styles.resultado}>
                     <div id={styles.resultadoHeader}>
                         <div>Numeros sorteados</div>
-                        <div>{numGanhador.map(e => <span className={styles.numResultado}>{e}  </span>)}</div>
+                        <div>{numGanhador.map((e, index) => <span key={index} className={styles.numResultado}>{e}  </span>)}</div>
                     </div>
                     {ganhadores.length > 0 ?
                         <div>
