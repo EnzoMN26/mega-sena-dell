@@ -13,7 +13,8 @@ const Loja: React.FC = () => {
 
   //Atribui o produto a pessoa. Caso ela ja possua o produto a função encontra este produto e aumenta sua quantidade.
   function compraPorduto(nome: string, valor: number) {
-    if (usuarioAtual == undefined || usuarioAtual.dinheiro < valor) {
+    //verifica se o usuario possui saldo suficiente
+    if (usuarioAtual == undefined || usuarioAtual.saldo < valor) {
       setAviso("saldo insuficiente");
     } else {
       setUsuarios(
@@ -22,6 +23,7 @@ const Loja: React.FC = () => {
             ? usuario.itens.some((item) => item.nome == nome)
               ? {
                   ...usuario,
+                  saldo: usuario.saldo - valor,
                   itens: usuario.itens.map((item) =>
                     item.nome == nome
                       ? { nome: item.nome, quantidade: item.quantidade + 1 }
@@ -30,11 +32,16 @@ const Loja: React.FC = () => {
                 }
               : {
                   ...usuario,
+                  saldo: usuario.saldo - valor,
                   itens: [...usuario.itens, { nome: nome, quantidade: 1 }],
                 }
             : usuario;
         })
       );
+      setUsuarioAtual({
+        ...usuarioAtual,
+        saldo: usuarioAtual.saldo - valor,
+      });
       setAviso("");
     }
   }
@@ -136,7 +143,7 @@ const Loja: React.FC = () => {
           Voltar
         </Link>
         <div id={styles.aviso}>{aviso}</div>
-        <div id={styles.saldo}>Saldo: {usuarioAtual?.dinheiro}</div>
+        <div id={styles.saldo}>Saldo: {usuarioAtual?.saldo}</div>
       </div>
     </div>
   );

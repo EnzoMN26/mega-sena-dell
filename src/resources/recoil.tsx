@@ -14,7 +14,7 @@ export type Pessoa = {
   id: number;
   nome: string;
   cpf: string;
-  dinheiro: number;
+  saldo: number;
   aposta: Aposta[] | [];
   itens: Item[] | [];
 };

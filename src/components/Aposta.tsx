@@ -42,7 +42,7 @@ const Aposta: React.FC = (props: any) => {
             id: id,
             nome: nome,
             cpf: cpf,
-            dinheiro: 0,
+            saldo: 0,
             aposta: [{ id: idAposta, numeros: aposta }],
             itens: [],
           },

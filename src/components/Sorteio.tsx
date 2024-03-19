@@ -5,18 +5,23 @@ import { Aposta, Pessoa, usuariosState } from "../resources/recoil";
 import { useEffect, useRef, useState } from "react";
 
 //Objetos apenas para teste em desenvolvimento (trocar suas chamadas depois dos testes)
-// const pessoasTeste = [{
+// const pessoasTeste = [
+//   {
 //     id: 2020,
 //     nome: "Enzo",
 //     cpf: "02304950321",
-//     aposta: [{ id: 2323, numeros: [11, 22, 33, 44, 55] }, { id: 2325, numeros: [1, 2, 7, 5, 8] }]
-// },
-// {
+//     aposta: [
+//       { id: 2323, numeros: [11, 22, 33, 44, 55] },
+//       { id: 2325, numeros: [1, 2, 7, 5, 8] },
+//     ],
+//   },
+//   {
 //     id: 2021,
 //     nome: "Renata",
 //     cpf: "02354950321",
-//     aposta: [{ id: 2326, numeros: [1, 2, 3, 4, 5] }]
-// }]
+//     aposta: [{ id: 2326, numeros: [1, 2, 3, 4, 5] }],
+//   },
+// ];
 
 const Sorteio: React.FC = () => {
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
@@ -47,9 +52,13 @@ const Sorteio: React.FC = () => {
 
   //zera as apostas dos usuario e entrega a recompensa para os ganhadores
   const finalizaSorteio = () => {
+    const recompensa = 1000 / ganhadores.length;
+
     setUsuarios(
       usuarios.map((usuario) => {
-        return { ...usuario, aposta: [] };
+        return ganhadores.some((ganhador) => ganhador.id == usuario.id)
+          ? { ...usuario, aposta: [], saldo: usuario.saldo + recompensa }
+          : { ...usuario, aposta: [] };
       })
     );
   };
@@ -93,7 +102,7 @@ const Sorteio: React.FC = () => {
             nome: user.nome,
             cpf: user.cpf,
             aposta: apostas,
-            dinheiro: user.dinheiro,
+            saldo: user.saldo,
             itens: [],
           });
         }
