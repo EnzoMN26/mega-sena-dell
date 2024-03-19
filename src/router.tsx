@@ -7,6 +7,7 @@ import Inventario from "./components/Inventario";
 import Aposta from "./components/Aposta";
 import Menu from "./components/Menu";
 import Lista from "./components/Lista";
+import LojaLogin from "./components/LojaLogin";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
       {
         path: "lista",
         element: <Lista />,
-      }
+      },
+      {
+        path: "lojaLogin",
+        element: <LojaLogin />,
+      },
     ],
   },
 ]);

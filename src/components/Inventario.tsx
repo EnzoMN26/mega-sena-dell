@@ -1,9 +1,7 @@
-import styles from "../styles/Inventario.module.css"
+import styles from "../styles/Inventario.module.css";
 
 const Inventario: React.FC = () => {
-    return( 
-        <></>
-    )
-}
+  return <></>;
+};
 
 export default Inventario;
