@@ -4,8 +4,6 @@ import { useRecoilState } from "recoil";
 import { Aposta, Pessoa, usuariosState } from "../../resources/recoil";
 import { useRef, useState } from "react";
 
-//Objetos apenas para teste em desenvolvimento (trocar suas chamadas depois dos testes)
-
 //Componente responsavel por renderizar a tela onde o sorteio é realizado e tambem o resultado do sorteio
 const Sorteio: React.FC = () => {
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
@@ -128,7 +126,7 @@ const Sorteio: React.FC = () => {
 
   return (
     <div id={styles.sorteio}>
-      {iniciar ? (
+      {iniciar ? ( //alterna a tela ao iniciar o sorteio
         loader ? (
           <>
             <div id={styles.sorteando}>Sorteando</div>
@@ -136,7 +134,7 @@ const Sorteio: React.FC = () => {
           </>
         ) : (
           <>
-            {" "}
+            {/*apresenta a tela inicial com o botao de iniciar o sorteio*/}
             <div id={styles.divIniciar}>
               <button
                 className={styles.botao}
@@ -157,14 +155,18 @@ const Sorteio: React.FC = () => {
           <div id={styles.resultadoHeader}>
             <div>Numeros sorteados</div>
             <div>
-              {numGanhador.map((e, index) => (
-                <span key={index} className={styles.numResultado}>
-                  {e}{" "}
-                </span>
-              ))}
+              {
+                //apresenta os numeros sorteados
+                numGanhador.map((e, index) => (
+                  <span key={index} className={styles.numResultado}>
+                    {e}{" "}
+                  </span>
+                ))
+              }
             </div>
           </div>
           <div id={styles.infos}>
+            {/*apresenta a quantidade de rodadas realizadas e apostas vencedoras*/}
             <div>Rodadas Realizadas: {numGanhador.length - 4}</div>
             <div>
               Apostas Vencedoras:{" "}
@@ -174,6 +176,7 @@ const Sorteio: React.FC = () => {
               )}
             </div>
           </div>
+          {/*apresenta a tabela de ganhadores*/}
           {ganhadores.length > 0 ? (
             <div>
               <div>Ganhadores</div>
@@ -188,6 +191,7 @@ const Sorteio: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody id={styles.tableBody}>
+                    {/*mapeia e apresenta as apostas vencedoras*/}
                     {ganhadores.sort(ordemAlfabetica).map((ganhador) => {
                       return ganhador.aposta.map((aposta, index) => {
                         return (
@@ -215,6 +219,7 @@ const Sorteio: React.FC = () => {
                 usuarios.aposta.some((aposta) => aposta.numeros.length > 0)
               ) ? (
                 <>
+                  {/*apresenta os numeros apostados e suas quantidades*/}
                   <div>Número Apostado:Quantidade de Apostas</div>
                   <div id={styles.listaApostados}>
                     {organizaNumApostados(qntNumApostados.current).map(
