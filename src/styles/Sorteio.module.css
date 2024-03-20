@@ -143,3 +143,7 @@ td {
   justify-content: center;
   gap: 30px;
 }
+
+#ganhadores {
+  width: 100%;
+}

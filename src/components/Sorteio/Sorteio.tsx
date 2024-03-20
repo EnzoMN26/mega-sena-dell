@@ -178,7 +178,7 @@ const Sorteio: React.FC = () => {
           </div>
           {/*apresenta a tabela de ganhadores*/}
           {ganhadores.length > 0 ? (
-            <div>
+            <div id={styles.ganhadores}>
               <div>Ganhadores</div>
               <div id={styles.divTable}>
                 <table id={styles.table}>
