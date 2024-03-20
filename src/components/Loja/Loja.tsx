@@ -11,7 +11,7 @@ const Loja: React.FC = () => {
   const { id } = location.state; //dados recebidos do componente de Login
   const [usuarios, setUsuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
   const [usuarioAtual, setUsuarioAtual] = useState<Pessoa>(); //dados dos usuario utilizando a loja
-  const [aviso, setAviso] = useState(""); //dados dos usuarios existentes
+  const [aviso, setAviso] = useState(""); //guarda a mensagem de erro ao preencher os campos
 
   //Atribui o produto a pessoa. Caso ela ja possua o produto a função encontra este produto e aumenta sua quantidade.
   function compraPorduto(nome: string, valor: number) {

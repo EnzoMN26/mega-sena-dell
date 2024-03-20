@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 
 //Componente responsavel por renderizar a tela de inventario, que lista os itens da pessoa designada atraves do CPF
 const Inventario: React.FC = () => {
-  const location = useLocation();
+  const location = useLocation(); //inicializa objeto para recuperar os states passados ao componente
   const { id } = location.state; //dados recebidos do componente de Login
   const [usuarios] = useRecoilState(usuariosState); //dados dos usuarios existentes
-  const [usuarioAtual, setUsuarioAtual] = useState<Pessoa>(); //dados dos usuarios existentes
+  const [usuarioAtual, setUsuarioAtual] = useState<Pessoa>(); //dados dos usuario atual
 
   //encontra o usuario atraves do id recebido pelo componente de login do inventario
   useEffect(() => {

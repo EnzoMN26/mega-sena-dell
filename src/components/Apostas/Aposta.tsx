@@ -99,8 +99,10 @@ const Aposta: React.FC = () => {
   return (
     <div id={styles.aposta}>
       <div className={styles.gridContainer}>
+        {/*chama a funcao que renderiza a grade de botoes*/}
         {renderizaBotoes(50)}
       </div>
+      {/*apresentam os numeros sendo escolhidos na aposta atual*/}
       <div id={styles.visor}>
         <div className={styles.escolhido}>
           {aposta.length > 0 ? aposta[0] : ""}
